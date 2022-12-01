@@ -1,4 +1,13 @@
-# TREE
+# Install 
+
+<font size="5"> `npx create-app-react name_proyect`</font>
+<br>
+<font size="5"> `cd name_proyect`</font>
+<br>
+<font size="5"> `npm start`</font>
+
+
+## Links
 
 * [Create React App](https://github.com/facebook/create-react-app).
 * [Redux JS](https://redux.js.org/).
@@ -8,21 +17,19 @@
 * react-dom-route
 * @redux/toolki
 
-## Configure Redux
-
-<font size="5"> `npx create-app-react`</font>
+## Configure Redux 
 
 ```
 cd App > Store.js
 ```
-### Reducer
+### Reducer `Redux`
 ```js
 import { configureStore } from "@reduxjs/toolkit";
-import tasksReducer from "../features/tasks/taskSlice";
+import commentReducer from "../features/tasks/Storage";
 
 export default configureStore({ 
     reducer: {
-        tasks: tasksReducer
+        tasks: commentReducer
     }
 });
 ```
@@ -30,20 +37,20 @@ export default configureStore({
 ---
 
 ```
-cd features > tasks > Slice.js
+cd features > tasks > Storage.js
 ```
-### CreateSlice
+### CreateSlice `Redux`
 ```javascript
 import { createSlice } from "@reduxjs/toolkit";
 
-export const Slice = createSlice(
+export const Storage = createSlice(
     {
     name: "tasks",
     initialState,
     reducers: {}
     }})
 
-export default Slice.reducer;
+export default Storage.reducer;
 ```
 ---
 ## Modify APP.js
@@ -59,4 +66,30 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
+```
+
+## Modify App.js `Step 2` (implement `react-dom-route`)
+```js
+import './App.css';
+import CommentSubmit from './components/CommentSubmit';
+import CommentList from './components/CommentList';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+function App() {
+
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+
+        <Route path="/" element={<CommentList />} />
+        <Route path="/create" element={<CommentSubmit />} />
+
+      </Routes>
+      </BrowserRouter>
+    </div>
+  );
+}
+
+export default App;
 ```
