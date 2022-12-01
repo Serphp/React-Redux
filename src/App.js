@@ -12,6 +12,7 @@ function App() {
 
         <Route path="/" element={<CommentList />} />
         <Route path="/create" element={<CommentSubmit />} />
+        <Route path='/Edit/:id' element={<CommentSubmit />} />
 
       </Routes>
       </BrowserRouter>

@@ -29,6 +29,7 @@ export default function CommentList() {
                 <h2>{task.title}</h2>
                 <p>{task.description}</p>
                 <button onClick={() => HDelete(task.id)}>Delete</button>
+                <Link to={`/Edit/${task.id}`} > Edit </Link>
             </div>
         ))
     }

@@ -1,48 +1,93 @@
-import { useState } from "react"
-import { useDispatch } from "react-redux";
-import { addComment } from "../features/tasks/Storage";
+import { useState, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux";
+import { addComment, editComment } from "../features/tasks/Storage";
 import { v4 as uuid } from "uuid";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function CommentSubmit() {
 
-    const [title, setTitle] = useState({
+    const [titlecoment, setTitlecoment] = useState({
         title: '',
-        description: ''
+        description: '',
+        complete: false
     });
 
     const Navigate = useNavigate();
     const Dispch = useDispatch();
+    // bring id for edit
+    const params = useParams();
+    // bring comment
+    const comentarios = useSelector(state => state.comment);
 
     const handleInputChange = (e) => {
         
         // Lectura para saber que guarda
         //(e.target.name, e.target.value);
 
-        setTitle({
-            ...title,
+        setTitlecoment({
+            ...titlecoment,
             [e.target.name]: e.target.value
         })
     }
 
     const HSubmit = (e) => {
-        //console.log(title);
-        Dispch(addComment({
-            ...title,
-            id: uuid(),
-            //completed: false or true
-        }));
-        Navigate("/");
-        // e.preventDeafault evita refrescar la pagina
         e.preventDefault();
+
+        if (params.id)  
+        {
+            Dispch(editComment(titlecoment));
+        } 
+        else 
+        {
+            Dispch(addComment({...titlecoment,id: uuid()}));
+        }
+        Navigate("/");
     }
+
+
+    useEffect(() => {
+
+        if (params.id) {
+            setTitlecoment(comentarios.find((comment) => comment.id === params.id));
+            //console.log(comentarios);
+            console.log(comentarios.find((comment) => comment.id === params.id))
+        }
+        /*
+                if (params.id) {
+            const commentFound = comentarios.find((titlecoment) => titlecoment.id === params.id);
+            console.log(titlecoment);
+            console.log(comentarios)
+            if (commentFound) {
+                setTitlecoment({
+                    title: commentFound.title,
+                    description: commentFound.description
+                })
+            }
+        }
+        */
+
+   
+    }, [])
 
 
     return (
         <> 
             <form onSubmit={HSubmit}> 
-                <input name='title' type="text" placeholder="Task Title" onChange={handleInputChange} />
-                <textarea name='description' placeholder="Task Description" onChange={handleInputChange}/>
+
+                <input name='title' 
+                type="text" 
+                    
+                    placeholder={comentarios.titlecoment}
+                    onChange={handleInputChange}
+                  />
+
+                <textarea name='description' 
+                type="text"
+                    
+                    placeholder={comentarios.description} 
+                    onChange={handleInputChange}
+                     />
+
                 <button type="submit">Add Task</button>
             </form>
             
