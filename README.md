@@ -3,6 +3,11 @@
 * [Create React App](https://github.com/facebook/create-react-app).
 * [Redux JS](https://redux.js.org/).
 
+### Dependencies
+* uuid
+* react-dom-route
+* @redux/toolki
+
 ## Configure Redux
 
 <font size="5"> `npx create-app-react`</font>
