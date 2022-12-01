@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from "react-redux"
+import { Link } from "react-router-dom";
 import { delComment } from "../features/tasks/Storage";
 
 export default function CommentList() {
@@ -11,11 +12,17 @@ export default function CommentList() {
     const HDelete = (id) => {
         //id.preventDefault();
         Dispch(delComment(id));
-        console.log(id);
+        //console.log(id);
     }
 
     return (<>
-    <h1> Hola </h1>
+    
+    <header>
+        <h1>Comment List [{comment.length}]</h1>
+        <Link to="/create">
+            Create Comment
+        </Link>
+    </header>
     {
         comment.map((task, index) => (
             <div key={index}>

@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux";
 import { addComment } from "../features/tasks/Storage";
 import { v4 as uuid } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 export default function CommentSubmit() {
 
@@ -10,6 +11,7 @@ export default function CommentSubmit() {
         description: ''
     });
 
+    const Navigate = useNavigate();
     const Dispch = useDispatch();
 
     const handleInputChange = (e) => {
@@ -23,13 +25,14 @@ export default function CommentSubmit() {
         })
     }
 
-    const handletest = (e) => {
+    const HSubmit = (e) => {
         //console.log(title);
         Dispch(addComment({
             ...title,
             id: uuid(),
             //completed: false or true
         }));
+        Navigate("/");
         // e.preventDeafault evita refrescar la pagina
         e.preventDefault();
     }
@@ -37,7 +40,7 @@ export default function CommentSubmit() {
 
     return (
         <> 
-            <form onSubmit={handletest}> 
+            <form onSubmit={HSubmit}> 
                 <input name='title' type="text" placeholder="Task Title" onChange={handleInputChange} />
                 <textarea name='description' placeholder="Task Description" onChange={handleInputChange}/>
                 <button type="submit">Add Task</button>
