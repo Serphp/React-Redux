@@ -1,15 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
-import TaskForm from './components/TaskForm';
-import TaskList from './components/taskList';
+import CommentSubmit from './components/CommentSubmit';
+import CommentList from './components/CommentList';
 
 function App() {
 
   return (
     <div className="App">
-      <TaskForm />
+      <CommentSubmit />
       <h1>Hello App</h1>
-      <TaskList />
+      <CommentList />
     </div>
   );
 }

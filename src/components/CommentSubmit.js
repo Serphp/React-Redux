@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { useDispatch } from "react-redux";
+import { addComment } from "../features/tasks/Slice";
 
 export default function TaskForm() {
 
@@ -6,6 +8,8 @@ export default function TaskForm() {
         title: '',
         description: ''
     });
+
+    const Dispch = useDispatch();
 
     const handleInputChange = (e) => {
         
@@ -19,7 +23,8 @@ export default function TaskForm() {
     }
 
     const handletest = (e) => {
-        console.log(title);
+        //console.log(title);
+        console.log(Dispch(addComment(title)));
         // e.preventDeafault evita refrescar la pagina
         e.preventDefault();
     }

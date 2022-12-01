@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
     const initialState = [
         {
             id: 1,
@@ -16,13 +17,15 @@ import { createSlice } from "@reduxjs/toolkit";
     ]
 
 export const Slice = createSlice({
-    name: "tasks",
+    name: "Comment",
     initialState,
     reducers: {
-        addTask: (state, action) => {
+        addComment: (state, action) => {
             state.push(action.payload);
+            //console.log(state, action);
         }
     }
 })
 
+export const { addComment } = Slice.actions;
 export default Slice.reducer;
