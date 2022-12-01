@@ -6,7 +6,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 function App() {
 
   return (
-    <div className="App">
+    <div className="bg-zinc-800 h-screen text-white">
+      <div className=' flex-auto items-center justify-center h-full'>
       <BrowserRouter>
         <Routes>
 
@@ -16,6 +17,7 @@ function App() {
 
       </Routes>
       </BrowserRouter>
+      </div>
     </div>
   );
 }

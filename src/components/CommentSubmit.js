@@ -74,21 +74,10 @@ export default function CommentSubmit() {
         <> 
             <form onSubmit={HSubmit}> 
 
-                <input name='title' 
-                type="text" 
-                    
-                    placeholder={comentarios.titlecoment}
-                    onChange={handleInputChange}
-                  />
-
-                <textarea name='description' 
-                type="text"
-                    
-                    placeholder={comentarios.description} 
-                    onChange={handleInputChange}
-                     />
-
+                <input name='title' type="text" placeholder={comentarios.titlecoment} onChange={handleInputChange}/>
+                <textarea name='description' type="text" placeholder={comentarios.description} onChange={handleInputChange}/>
                 <button type="submit">Add Task</button>
+            
             </form>
             
         </>

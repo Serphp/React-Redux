@@ -17,18 +17,17 @@ export default function CommentList() {
 
     return (<>
     
-    <header>
+    <header className="flex justify-between">
         <h1>Comment List [{comment.length}]</h1>
-        <Link to="/create">
-            Create Comment
-        </Link>
+        <Link to="/create"> Create Comment </Link>
     </header>
+    
     {
         comment.map((task, index) => (
-            <div key={index}>
+            <div className="grid" key={index}>
                 <h2>{task.title}</h2>
                 <p>{task.description}</p>
-                <button onClick={() => HDelete(task.id)}>Delete</button>
+                <button class=" bg-white text-black border-spacing-1" onClick={() => HDelete(task.id)}>Delete</button>
                 <Link to={`/Edit/${task.id}`} > Edit </Link>
             </div>
         ))
